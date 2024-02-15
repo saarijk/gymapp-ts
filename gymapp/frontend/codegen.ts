@@ -4,10 +4,10 @@
 */
 
 import { CodegenConfig } from "@graphql-codegen/cli";
-import { getApiUrl } from "../frontend/src/services";
+//import { getApiUrl } from "../frontend/src/services";
 
 const config: CodegenConfig = {
-  schema: getApiUrl(""),
+  schema: "http://localhost:4000/",
   documents: ["src/**/*.tsx"],
   generates: {
     "./src/__generated__/": {

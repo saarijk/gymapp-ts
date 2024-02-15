@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { gql } from "../__generated__";
 import { useQuery } from "@apollo/client";
 
 const USERS = gql(`
 query GetUser {
-    getUser {
+    users {
       id
       username
       email
@@ -21,12 +22,15 @@ query GetUser {
 
 const Users = () => {
   const { loading, error, data } = useQuery(USERS);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
   if (!data) return <div>No data available</div>;
   return (
     <div className="grid grid-cols-3 gap-4">
-      {data.getUser.map((user) => (
+      {data.users.map((user) => (
         <div key={user.id} className="border p-4">
           <p>ID: {user.id}</p>
           <p>Username: {user.username}</p>

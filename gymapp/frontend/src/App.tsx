@@ -1,10 +1,10 @@
-import Users from "./pages";
+import Pages from "./pages";
 import Users from "./pages/users";
 
 function App() {
   return (
     <>
-      <Users />
+      <Pages />
       <Users />
     </>
   );
