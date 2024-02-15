@@ -3,31 +3,11 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema";
 import { addMocksToSchema } from "@graphql-tools/mock";
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import data from "../db.json";
 
 const mocks = {
   Query: () => ({
-    getUser: () => [...new Array(3)],
-  }),
-  User: () => ({
-    id: "user_01",
-    username: "a_tiny_ant",
-    email: "email@email.com",
-    password: "Password1!",
-    isActive: true,
-    workouts: () => [
-      {
-        id: "workout_01",
-        name: "running",
-        description: "5k run around the lake",
-        calories: 300,
-      },
-      {
-        id: "workout_02",
-        name: "gym session",
-        description: "1 hour circuit training",
-        calories: 500,
-      },
-    ],
+    users: () => data.users,
   }),
 };
 

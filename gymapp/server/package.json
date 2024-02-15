@@ -5,7 +5,8 @@
   "scripts": {
     "compile": "tsc",
     "dev": "ts-node-dev --respawn ./src/index.ts",
-    "start": "npm run compile && nodemon ./dist/index.js"
+    "start": "npm run compile && nodemon ./dist/index.js",
+    "start-db": "json-server --watch db.json --port 3001 --delay 500"
   },
   "devDependencies": {
     "dotenv": "^16.4.1",

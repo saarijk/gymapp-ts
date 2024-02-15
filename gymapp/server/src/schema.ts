@@ -18,6 +18,6 @@ export const typeDefs = gql`
   }
 
   type Query {
-    getUser: [User!]!
+    users: [User!]!
   }
 `;

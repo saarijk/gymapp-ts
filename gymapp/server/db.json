@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": "user_01",
+      "username": "a_tiny_ant",
+      "email": "email@email.com",
+      "password": "Password1!",
+      "isActive": true,
+      "workouts": [
+        {
+          "id": "workout_01",
+          "name": "running",
+          "description": "5k run around the lake",
+          "calories": 300
+        },
+        {
+          "id": "workout_02",
+          "name": "gym session",
+          "description": "1 hour circuit training",
+          "calories": 500
+        }
+      ]
+    },
+    {
+      "id": "user_02",
+      "username": "goofy",
+      "email": "email@email.com",
+      "password": "Password1!",
+      "isActive": true,
+      "workouts": [
+        {
+          "id": "workout_01",
+          "name": "gym session",
+          "description": "strength training",
+          "calories": 200
+        },
+        {
+          "id": "workout_02",
+          "name": "gym session",
+          "description": "cardio",
+          "calories": 400
+        },
+        {
+          "id": "workout_03",
+          "name": "gym session",
+          "description": "strength training",
+          "calories": 300
+        }
+      ]
+    }
+  ]
+}
