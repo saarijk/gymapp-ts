@@ -1,0 +1,34 @@
+[
+  {
+    "id": "9fa90c89-f24c-44bd-a92d-031e797c953f",
+    "username": "testing_username",
+    "email": "email@emal.com",
+    "password": "$2b$10$puaCsbXAagWfiWx9nawtrOOxmQBrBhekSNQJwtq/sLALqDOhNBJcG",
+    "isActive": true,
+    "workouts": []
+  },
+  {
+    "id": "e9f8d437-7ada-4c68-8bce-f123467d69ed",
+    "username": "anotherUsername",
+    "email": "email@email.com",
+    "password": "$2b$10$4qpVnRvTpHncFi7WrTh70exihwUjosiMCn7wbF4yHP6qh1rNL6Uhq",
+    "isActive": true,
+    "workouts": []
+  },
+  {
+    "id": "26216f28-7c59-494a-894a-1de9c4f8c11d",
+    "username": "anotherOne",
+    "email": "email@email.com",
+    "password": "$2b$10$YIqBYe44pP.8deoZvmoNNu0ej6915JoNyvICHnvfuJWDGz0IyUnsa",
+    "isActive": true,
+    "workouts": []
+  },
+  {
+    "id": "ed108c74-4005-4822-9368-31cd9e9ab2df",
+    "username": "Anthony",
+    "email": "ant@email.com",
+    "password": "$2b$10$.pjU/9WDfmXgVo5Gz6VzX.Q4dDQoDY4XV4IlBZFo2xtVs4ZEwmnpK",
+    "isActive": true,
+    "workouts": []
+  }
+]

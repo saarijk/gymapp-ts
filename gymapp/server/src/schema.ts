@@ -15,9 +15,31 @@ export const typeDefs = gql`
     name: String!
     description: String!
     calories: Int!
+    userId: ID!
+  }
+
+  type AuthPayload {
+    token: String!
+  }
+
+  input UserInput {
+    username: String!
+    email: String!
+    password: String!
+  }
+
+  input LoginInput {
+    username: String!
+    password: String!
   }
 
   type Query {
     users: [User!]!
+    userWorkouts(userId: ID!): [Workout!]!
+  }
+
+  type Mutation {
+    registerUser(input: UserInput!): User!
+    loginUser(input: LoginInput!): AuthPayload!
   }
 `;

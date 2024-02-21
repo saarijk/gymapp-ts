@@ -3,9 +3,10 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema";
 import { addMocksToSchema } from "@graphql-tools/mock";
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import data from "../db.json";
+import data from "./data/mocks.json";
+import resolvers from "./resolvers";
 
-const mocks = {
+/*const mocks = {
   Query: () => ({
     users: () => data.users,
   }),
@@ -20,6 +21,15 @@ async function startApolloServer() {
   });
   const { url } = await startStandaloneServer(server);
   console.log(`Server is running. Query at ${url}`);
+}*/
+
+async function startApolloServer() {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
+  const { url } = await startStandaloneServer(server);
+  console.log(`Server is running at ${url}`);
 }
 
 startApolloServer();
