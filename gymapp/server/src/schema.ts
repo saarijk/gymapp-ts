@@ -33,6 +33,12 @@ export const typeDefs = gql`
     password: String!
   }
 
+  input WorkoutInput {
+    name: String!
+    description: String!
+    calories: Int!
+  }
+
   type Query {
     users: [User!]!
     userWorkouts(userId: ID!): [Workout!]!
@@ -41,5 +47,6 @@ export const typeDefs = gql`
   type Mutation {
     registerUser(input: UserInput!): User!
     loginUser(input: LoginInput!): AuthPayload!
+    createWorkout(input: WorkoutInput!): Workout!
   }
 `;

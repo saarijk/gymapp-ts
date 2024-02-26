@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import validator from "validator";
 import jwt from "jsonwebtoken";
-import { UserInput, User, Workout, LoginInput } from "./types";
+import { UserInput, User, Workout, LoginInput, WorkoutInput } from "./types";
 
 const USERS_FILE = path.join(__dirname, "data", "users.json");
 const SECRET_KEY = "your-secret-key";
@@ -19,6 +19,29 @@ try {
 }
 
 const resolvers = {
+  Query: {
+    userWorkouts: (
+      _: any,
+      { userId }: { userId: string },
+      context: any
+    ): Workout[] => {
+      // Check if the user is authenticated
+      if (!context.currentUser && !userId) {
+        // If the user is not authenticated and userId is not provided, return an empty array or handle the case accordingly
+        return [];
+      }
+
+      // Find workouts associated with the authenticated user or the user specified by userId
+      const user = context.currentUser;
+      if (!user) {
+        // Handle the case where the user is not found
+        return [];
+      }
+
+      // Return the workouts associated with the user
+      return user.workouts || [];
+    },
+  },
   Mutation: {
     registerUser: (_: any, { input }: { input: UserInput }): User => {
       // generate id
@@ -84,11 +107,68 @@ const resolvers = {
       }
 
       // Passwords match, generate JWT token
-      const token = jwt.sign({ userId: user.id }, SECRET_KEY, {
-        expiresIn: "1h",
-      });
+      const token = jwt.sign(
+        { userId: user.id, username: user.username },
+        SECRET_KEY,
+        {
+          expiresIn: "1h",
+        }
+      );
 
       return { token };
+    },
+    createWorkout: (
+      _: any,
+      { input }: { input: WorkoutInput },
+      context: any
+    ): Workout => {
+      // Check if user is authenticated
+      if (!context.user) {
+        throw new Error("User is not authenticated");
+      }
+
+      const { name, description, calories } = input;
+
+      const userId = context.user.userId;
+      // Read user data from users.json
+      let userData;
+      try {
+        userData = JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
+      } catch (error) {
+        console.error("Error reading users file:", error);
+        throw new Error("Failed to read user data");
+      }
+
+      // Find the user by ID
+      const userIndex = userData.findIndex((user: any) => user.id === userId);
+      if (userIndex === -1) {
+        throw new Error("User not found");
+      }
+
+      const id: string = uuidv4();
+      // Create a new workout object
+      const newWorkout: Workout = {
+        id,
+        name,
+        description,
+        calories,
+        userId: userId,
+      };
+
+      console.log(newWorkout);
+
+      // Add the new workout to the user's workouts array
+      userData[userIndex].workouts.push(newWorkout);
+
+      // Write the updated user data back to users.json
+      try {
+        fs.writeFileSync(USERS_FILE, JSON.stringify(userData, null, 2));
+      } catch (error) {
+        console.error("Error writing users file:", error);
+        throw new Error("Failed to write user data");
+      }
+
+      return newWorkout;
     },
   },
 };

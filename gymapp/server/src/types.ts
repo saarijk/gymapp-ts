@@ -20,6 +20,12 @@ export interface Workout {
   userId: string;
 }
 
+export interface WorkoutInput {
+  name: string;
+  description: string;
+  calories: number;
+}
+
 // User interface
 export interface User {
   id: string;

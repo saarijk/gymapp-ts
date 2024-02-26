@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useMutation, gql } from "@apollo/client";
 
@@ -16,6 +16,8 @@ const Login: React.FC = () => {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [redirectToWorkouts, setRedirectToWorkouts] = useState(false);
   const [loginUser, { loading, error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +30,7 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setErrorMessage("");
     try {
       const { data } = await loginUser({
         variables: { input: formData },
@@ -36,11 +39,18 @@ const Login: React.FC = () => {
       console.log(data);
       // store token locally
       localStorage.setItem("token", token);
-      // TODO: add redirect?
+      setRedirectToWorkouts(true);
     } catch (err: any) {
       console.error("Login failed:", err.message);
+      setErrorMessage("Invalid username or password.");
     }
   };
+
+  useEffect(() => {
+    if (redirectToWorkouts) {
+      window.location.href = "/workouts";
+    }
+  }, [redirectToWorkouts]);
 
   return (
     <div className="flex w-5/6 items-center mx-auto">
@@ -80,7 +90,7 @@ const Login: React.FC = () => {
         >
           {loading ? "Logging in..." : "Login"}
         </button>
-        {error && <p>Error: {error.message}</p>}
+        {error && <p className="text-red-500">{errorMessage}</p>}
       </form>
       <div className="w-full max-w-md mx-auto mt-4">
         <p className="text-center">
