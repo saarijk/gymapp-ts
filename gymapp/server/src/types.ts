@@ -35,3 +35,8 @@ export interface User {
   isActive: boolean;
   workouts: Workout[];
 }
+
+export interface DecodedToken {
+  userId: string;
+  username: string;
+}

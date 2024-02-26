@@ -4,7 +4,14 @@ import fs from "fs";
 import path from "path";
 import validator from "validator";
 import jwt from "jsonwebtoken";
-import { UserInput, User, Workout, LoginInput, WorkoutInput } from "./types";
+import {
+  UserInput,
+  User,
+  Workout,
+  LoginInput,
+  WorkoutInput,
+  DecodedToken,
+} from "./types";
 
 const USERS_FILE = path.join(__dirname, "data", "users.json");
 const SECRET_KEY = "your-secret-key";
@@ -16,6 +23,16 @@ try {
   users = JSON.parse(data);
 } catch (error) {
   console.error("Error reading users file:", error);
+}
+
+// Function to verify a JWT
+function verifyToken(token: string) {
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    return decoded;
+  } catch (err) {
+    throw new Error("Invalid token");
+  }
 }
 
 const resolvers = {
@@ -122,14 +139,14 @@ const resolvers = {
       { input }: { input: WorkoutInput },
       context: any
     ): Workout => {
-      // Check if user is authenticated
-      if (!context.user) {
-        throw new Error("User is not authenticated");
-      }
+      let token = context.authScope as string;
+      token = token.replace("Bearer ", "");
+      const decodedToken = verifyToken(token);
+      console.log(decodedToken);
 
       const { name, description, calories } = input;
+      const decodedUser = decodedToken as DecodedToken;
 
-      const userId = context.user.userId;
       // Read user data from users.json
       let userData;
       try {
@@ -140,7 +157,9 @@ const resolvers = {
       }
 
       // Find the user by ID
-      const userIndex = userData.findIndex((user: any) => user.id === userId);
+      const userIndex = userData.findIndex(
+        (user: any) => user.id === decodedUser.userId
+      );
       if (userIndex === -1) {
         throw new Error("User not found");
       }
@@ -152,7 +171,7 @@ const resolvers = {
         name,
         description,
         calories,
-        userId: userId,
+        userId: decodedUser.userId,
       };
 
       console.log(newWorkout);

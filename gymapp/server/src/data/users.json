@@ -5,7 +5,15 @@
     "email": "email@emal.com",
     "password": "$2b$10$puaCsbXAagWfiWx9nawtrOOxmQBrBhekSNQJwtq/sLALqDOhNBJcG",
     "isActive": true,
-    "workouts": []
+    "workouts": [
+      {
+        "id": "cb5e9a12-f276-4b39-b724-83ba37671645",
+        "name": "asd",
+        "description": "asdsdsa",
+        "calories": 0,
+        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
+      }
+    ]
   },
   {
     "id": "e9f8d437-7ada-4c68-8bce-f123467d69ed",
