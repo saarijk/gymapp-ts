@@ -4,6 +4,8 @@ import { jwtDecode } from "jwt-decode";
 import LogoutButton from "../LogoutButton";
 import AddNewWorkout from "../AddNewWorkout";
 
+type ID = string;
+
 const GET_USER_WORKOUTS = gql`
   query UserWorkouts($userId: ID!) {
     userWorkouts(userId: $userId) {
@@ -25,12 +27,18 @@ interface DecodedToken {
 
 const Workouts: React.FC<Props> = () => {
   const [username, setUsername] = useState<string>("");
-  const [userId, setUserId] = useState<string>("");
+  const [userId, setUserId] = useState<ID>("");
   const [showAddForm, setShowAddForm] = useState<boolean>(false);
+  const [shouldAutoRefresh, setShouldAutoRefresh] = useState<boolean>(false);
 
   const toggleAddForm = () => {
-    setShowAddForm(!showAddForm);
+    setShowAddForm((prevShowAddForm) => !prevShowAddForm);
   };
+
+  // Function to refetch user workouts
+  const { loading, error, data, refetch } = useQuery(GET_USER_WORKOUTS, {
+    variables: { userId: userId },
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -49,9 +57,15 @@ const Workouts: React.FC<Props> = () => {
     }
   }, []);
 
-  const { loading, error, data } = useQuery(GET_USER_WORKOUTS, {
-    variables: { userId: userId },
-  });
+  useEffect(() => {
+    if (shouldAutoRefresh) {
+      const interval = setInterval(() => {
+        refetch();
+      }, 1000); // set up refresh rate
+
+      return () => clearInterval(interval);
+    }
+  }, [shouldAutoRefresh, refetch]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -66,15 +80,17 @@ const Workouts: React.FC<Props> = () => {
         )}
         <LogoutButton />
       </div>
-      <div className="w-5/6 flex flex-col  mx-auto mt-[50px]">
-        <h1 className="font-bold p-3">Your workouts:</h1>
-        {data.userWorkouts.map((workout: any) => (
-          <div key={workout.id} className="border p-3 mb-4">
-            <h2 className="text-xl font-bold">{workout.name}</h2>
-            <p className="text-gray-600">{workout.description}</p>
-            <p className="text-gray-600">Calories: {workout.calories}</p>
-          </div>
-        ))}
+      <div className="w-5/6 flex flex-col mx-auto mt-[50px]">
+        <h1 className="font-bold text-2xl p-3">Your workouts</h1>
+        <div className="grid grid-cols-2 gap-4">
+          {data.userWorkouts.map((workout: any) => (
+            <div key={workout.id} className="border p-3 mb-4">
+              <h2 className="text-xl font-bold">{workout.name}</h2>
+              <p className="text-gray-600">{workout.description}</p>
+              <p className="text-gray-600">Calories: {workout.calories}</p>
+            </div>
+          ))}
+        </div>
 
         {/* if no workouts */}
         {data.userWorkouts.length === 0 && (

@@ -42,21 +42,40 @@ const resolvers = {
       { userId }: { userId: string },
       context: any
     ): Workout[] => {
-      // Check if the user is authenticated
-      if (!context.currentUser && !userId) {
-        // If the user is not authenticated and userId is not provided, return an empty array or handle the case accordingly
-        return [];
-      }
+      try {
+        // Check if the user is authenticated
+        let token = context.authScope as string;
+        token = token.replace("Bearer ", "");
+        const decodedToken = verifyToken(token);
+        console.log(decodedToken);
 
-      // Find workouts associated with the authenticated user or the user specified by userId
-      const user = context.currentUser;
-      if (!user) {
-        // Handle the case where the user is not found
-        return [];
-      }
+        const decodedUser = decodedToken as DecodedToken;
 
-      // Return the workouts associated with the user
-      return user.workouts || [];
+        // Read user data from users.json
+        let userData;
+        try {
+          userData = JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
+        } catch (error) {
+          console.error("Error reading users file:", error);
+          throw new Error("Failed to read user data");
+        }
+
+        // Find the user by ID
+        const user = userData.find(
+          (user: any) => user.id === decodedUser.userId
+        );
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        // Return the workouts associated with the user
+        return user.workouts || [];
+      } catch (error) {
+        // Log the error or handle it accordingly
+        console.error("Error fetching user workouts:", error);
+        // You might also want to throw the error here if you want to propagate it to the client
+        throw new Error("Failed to fetch user workouts");
+      }
     },
   },
   Mutation: {
