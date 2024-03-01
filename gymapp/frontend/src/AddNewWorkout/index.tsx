@@ -1,5 +1,7 @@
 import { useMutation, gql } from "@apollo/client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useVisbility } from "../Contexts/VisibilityContext";
+import { useData } from "../Contexts/DataContext";
 
 const ADD_WORKOUT = gql`
   mutation CreateWorkout($input: WorkoutInput!) {
@@ -24,6 +26,8 @@ const AddNewWorkout: React.FC = () => {
     calories: 0,
   });
 
+  const { setCreateform } = useVisbility();
+  const { refetch } = useData();
   const [createWorkout, { loading, error }] = useMutation(ADD_WORKOUT);
 
   const handleChange = (
@@ -46,6 +50,8 @@ const AddNewWorkout: React.FC = () => {
         description: "",
         calories: 0,
       });
+      setCreateform(false);
+      refetch();
     } catch (error) {
       console.error("Error adding workout:", error);
     }

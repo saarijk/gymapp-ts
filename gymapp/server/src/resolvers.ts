@@ -47,7 +47,6 @@ const resolvers = {
         let token = context.authScope as string;
         token = token.replace("Bearer ", "");
         const decodedToken = verifyToken(token);
-        console.log(decodedToken);
 
         const decodedUser = decodedToken as DecodedToken;
 
