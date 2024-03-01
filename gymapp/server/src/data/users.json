@@ -5,92 +5,7 @@
     "email": "email@emal.com",
     "password": "$2b$10$puaCsbXAagWfiWx9nawtrOOxmQBrBhekSNQJwtq/sLALqDOhNBJcG",
     "isActive": true,
-    "workouts": [
-      {
-        "id": "cb5e9a12-f276-4b39-b724-83ba37671645",
-        "name": "asd",
-        "description": "asdsdsa",
-        "calories": 0,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "bbd5fbb4-6567-4c70-830b-a890316f1c2e",
-        "name": "testing 2",
-        "description": "this is a description. It can be as long or as short as you like.",
-        "calories": 300,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "5650bac0-e992-44c0-8d21-c7fd21ab9446",
-        "name": "this is a workout",
-        "description": "i went to the gym, yay",
-        "calories": 450,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "e8dc8132-3c0d-4cc3-a7f2-368275d23c37",
-        "name": "another one",
-        "description": "went on a 5k run",
-        "calories": 300,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "ef3a3e63-da37-4ce1-9645-e377173f5b8a",
-        "name": "strength training",
-        "description": "lifting weights at the gym",
-        "calories": 300,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "fe4e16b3-e2fd-46a5-ba32-0f2456799e4c",
-        "name": "",
-        "description": "",
-        "calories": 0,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "16306ef0-6a80-4098-b61c-adbc6055b345",
-        "name": "testing testing",
-        "description": "blah blah blah",
-        "calories": 123,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "398e113f-1c27-4dbd-bb6f-72769ee35508",
-        "name": "adding yet another one",
-        "description": "akujsdhkaujhsdaifhlsdjflsdkjflasjdf",
-        "calories": 1234,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "1d02ece7-b7bf-4701-ae50-1f16420e2b1a",
-        "name": "kajshdkajhsd",
-        "description": "klajdslkajsldfj",
-        "calories": 123,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "e4a34dfa-9833-4227-8ca2-35f9413331a2",
-        "name": "testinggfd",
-        "description": "oilkfjsldkfjsgupdofkjgödlfkjglkj",
-        "calories": 321,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "b49c8aba-7538-4fa8-a3ec-505530ad0014",
-        "name": "kjhdkhdfisdgfsdjf",
-        "description": "lksjdfpigjpdojfgdökfjglsjhdfl",
-        "calories": 999,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      },
-      {
-        "id": "665ef11f-4f12-4a10-adf1-f57d9612584e",
-        "name": "asdasd",
-        "description": "afsdfsdf",
-        "calories": 123,
-        "userId": "9fa90c89-f24c-44bd-a92d-031e797c953f"
-      }
-    ]
+    "workouts": []
   },
   {
     "id": "e9f8d437-7ada-4c68-8bce-f123467d69ed",
@@ -124,17 +39,19 @@
     "isActive": true,
     "workouts": [
       {
-        "id": "4d40c481-b336-4673-aa7c-6c8329d00559",
-        "name": "strength training",
-        "description": "lifted weights at the gym",
-        "calories": 400,
+        "id": "1c70d6a6-df5e-4483-a4cd-955cebc5f885",
+        "createdAt": "1.3.2024",
+        "name": "Strength Training",
+        "description": "Went to the gym and lifted some weights",
+        "calories": 300,
         "userId": "900e2951-7a11-45c2-ac85-a2e5f19b0e55"
       },
       {
-        "id": "bbaa13d0-64c1-4c13-9b90-6febf757808b",
-        "name": "cardio",
-        "description": "5k run around the lake",
-        "calories": 450,
+        "id": "cd978317-ff1e-45db-a75a-34642d6f8527",
+        "createdAt": "1.3.2024",
+        "name": "Cardio",
+        "description": "Ran 5k around the lake",
+        "calories": 400,
         "userId": "900e2951-7a11-45c2-ac85-a2e5f19b0e55"
       }
     ]
@@ -153,14 +70,6 @@
     "email": "email@gmail.com",
     "password": "$2b$10$NWV62VJAklBzdV6q1uc8Yux5jq5z/OJeo6qB4VMGjFaCP9Jbyvv9C",
     "isActive": true,
-    "workouts": [
-      {
-        "id": "d9d56297-2136-4760-9fb5-47c2b38152ce",
-        "name": "strength training",
-        "description": "lifted weights at the gym",
-        "calories": 300,
-        "userId": "37a0d7ad-b54a-4252-a3c9-c7c65f41ca69"
-      }
-    ]
+    "workouts": []
   }
 ]

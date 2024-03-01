@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  mutation CreateWorkout($input: WorkoutInput!) {\n    createWorkout(input: $input) {\n      name\n      description\n      calories\n    }\n  }\n": types.CreateWorkoutDocument,
+    "\n    query UserWorkouts($userId: ID!) {\n      userWorkouts(userId: $userId) {\n        id\n        name\n        description\n        calories\n        userId\n      }\n    }\n  ": types.UserWorkoutsDocument,
     "\n  mutation LoginUser($input: LoginInput!) {\n    loginUser(input: $input) {\n      token\n    }\n  }\n": types.LoginUserDocument,
     "\n  mutation RegisterUser($input: UserInput!) {\n    registerUser(input: $input) {\n      id\n      username\n      email\n    }\n  }\n": types.RegisterUserDocument,
     "\n  query UserWorkouts($userId: ID!) {\n    userWorkouts(userId: $userId) {\n      id\n      name\n      description\n      calories\n      userId\n    }\n  }\n": types.UserWorkoutsDocument,
@@ -38,6 +39,10 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation CreateWorkout($input: WorkoutInput!) {\n    createWorkout(input: $input) {\n      name\n      description\n      calories\n    }\n  }\n"): (typeof documents)["\n  mutation CreateWorkout($input: WorkoutInput!) {\n    createWorkout(input: $input) {\n      name\n      description\n      calories\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n    query UserWorkouts($userId: ID!) {\n      userWorkouts(userId: $userId) {\n        id\n        name\n        description\n        calories\n        userId\n      }\n    }\n  "): (typeof documents)["\n    query UserWorkouts($userId: ID!) {\n      userWorkouts(userId: $userId) {\n        id\n        name\n        description\n        calories\n        userId\n      }\n    }\n  "];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -13,6 +13,7 @@ const GET_USER_WORKOUTS = gql`
   query UserWorkouts($userId: ID!) {
     userWorkouts(userId: $userId) {
       id
+      createdAt
       name
       description
       calories
@@ -86,7 +87,7 @@ const Workouts: React.FC<Props> = () => {
         </div>
       </div>
       <div className="w-5/6 flex flex-col mx-auto mt-[50px]">
-        <h1 className="font-bold text-2xl p-3 font-montserrat">
+        <h1 className="font-bold text-3xl p-3 font-montserrat">
           YOUR WORKOUTS
         </h1>
         <div className="grid grid-cols-2 gap-4">
@@ -95,9 +96,12 @@ const Workouts: React.FC<Props> = () => {
               key={workout.id}
               className="border border-gray-600 rounded-md p-3 mb-4"
             >
-              <h2 className="text-xl font-bold font-montserrat mb-2">
-                {workout.name}
-              </h2>
+              <div className="flex justify-between">
+                <h2 className="text-xl font-bold font-montserrat mb-2">
+                  {workout.name}
+                </h2>
+                <p className="text-sm text-slate-500">{workout.createdAt}</p>
+              </div>
               <p className="font-dmsans">{workout.description}</p>
               <p className="font-dmsans">Calories: {workout.calories}</p>
             </div>

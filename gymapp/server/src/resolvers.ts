@@ -183,9 +183,13 @@ const resolvers = {
       }
 
       const id: string = uuidv4();
+      let date: Date = new Date();
+      let createdAt: string = date.toLocaleDateString();
+
       // Create a new workout object
       const newWorkout: Workout = {
         id,
+        createdAt,
         name,
         description,
         calories,

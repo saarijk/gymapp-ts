@@ -14,6 +14,7 @@ export interface LoginInput {
 // Workout interface
 export interface Workout {
   id: string;
+  createdAt: string;
   name: string;
   description: string;
   calories: number;

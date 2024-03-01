@@ -12,6 +12,7 @@ export const typeDefs = gql`
 
   type Workout {
     id: ID!
+    createdAt: String!
     name: String!
     description: String!
     calories: Int!

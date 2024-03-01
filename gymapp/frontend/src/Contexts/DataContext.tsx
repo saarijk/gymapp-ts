@@ -29,6 +29,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
     query UserWorkouts($userId: ID!) {
       userWorkouts(userId: $userId) {
         id
+        createdAt
         name
         description
         calories
