@@ -146,5 +146,21 @@
     "password": "$2b$10$/.cVi6m6YUw3Dl5bdY1wVOVsYBJxF5k0A7NUWmstus4Wt751805EK",
     "isActive": true,
     "workouts": []
+  },
+  {
+    "id": "37a0d7ad-b54a-4252-a3c9-c7c65f41ca69",
+    "username": "username",
+    "email": "email@gmail.com",
+    "password": "$2b$10$NWV62VJAklBzdV6q1uc8Yux5jq5z/OJeo6qB4VMGjFaCP9Jbyvv9C",
+    "isActive": true,
+    "workouts": [
+      {
+        "id": "d9d56297-2136-4760-9fb5-47c2b38152ce",
+        "name": "strength training",
+        "description": "lifted weights at the gym",
+        "calories": 300,
+        "userId": "37a0d7ad-b54a-4252-a3c9-c7c65f41ca69"
+      }
+    ]
   }
 ]

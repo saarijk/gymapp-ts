@@ -79,7 +79,7 @@ const Login: React.FC = () => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="w-full px-4 py-2 text-slate-700 border rounded-lg focus:outline-none focus:border-blue-500"
+              className="bg-opacity-80 bg-white w-full px-4 py-2 text-slate-700 border rounded-lg focus:outline-none focus:border-blue-500"
               required
             />
           </div>
@@ -96,16 +96,16 @@ const Login: React.FC = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 text-slate-700 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+              className="bg-opacity-80 bg-white w-full px-4 text-slate-700 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               required
             />
           </div>
           <button
-            className="mt-6 w-full bg-blue-500 text-white pt-2 pb-[6px] rounded-lg hover:bg-blue-600 transition duration-300 font-montserrat text-xl"
+            className="mt-6 w-full bg-blue-500 text-white pt-2 pb-[6px] rounded-lg hover:bg-blue-600 hover:bg-opacity-80 transition duration-300 font-montserrat text-xl"
             type="submit"
             disabled={loading}
           >
-            {loading ? "Logging in..." : "LOGIN"}
+            {loading ? "Logging in..." : "Sign In"}
           </button>
           {error && <p className="text-red-500">{errorMessage}</p>}
         </form>
@@ -129,7 +129,7 @@ const Login: React.FC = () => {
             FITLOG
           </h1>
           <p className="text-darkblue bg-white font-montserrat rounded-md text-md ml-[50px] p-3 flex justify-center border-darkblue border-[1px] mt-[-10px] mr-[25px]">
-            TRACK YOUR FITNESS YOURNEY, ONE WORKOUT AT A TIME
+            TRACK YOUR FITNESS JOURNEY, ONE WORKOUT AT A TIME
           </p>
         </div>
       </div>
